@@ -12,11 +12,17 @@ public class Main {
 
         while (true) {
             System.out.print("> ");
+            if (!scanner.hasNextLine()) {
+                System.out.println("\n⚠️ Ввод недоступен. Завершение программы.");
+                break;
+            }
+
             String command = scanner.nextLine().trim().toLowerCase();
 
             switch (command) {
                 case "add":
                     System.out.print("Введите задачу: ");
+                    if (!scanner.hasNextLine()) break;
                     String task = scanner.nextLine();
                     tasks.add(task);
                     System.out.println("✅ Задача добавлена!");
@@ -35,6 +41,7 @@ public class Main {
 
                 case "delete":
                     System.out.print("Введите номер задачи для удаления: ");
+                    if (!scanner.hasNextLine()) break;
                     try {
                         int index = Integer.parseInt(scanner.nextLine()) - 1;
                         if (index >= 0 && index < tasks.size()) {
@@ -49,6 +56,7 @@ public class Main {
 
                 case "exit":
                     System.out.println("👋 До свидания!");
+                    scanner.close();
                     return;
 
                 default:
@@ -57,6 +65,3 @@ public class Main {
         }
     }
 }
-
-
-
